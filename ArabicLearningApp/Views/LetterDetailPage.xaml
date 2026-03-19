@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ArabicLearningApp.Views.LetterDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Letter Detail"
+    BackgroundColor="{StaticResource BackgroundLight}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Header -->
+            <Grid HeightRequest="180">
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{StaticResource GradientStart}" Offset="0.0" />
+                            <GradientStop Color="{StaticResource GradientEnd}" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="6">
+                    <Label
+                        x:Name="BigLetterLabel"
+                        FontSize="80"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center"
+                        TextColor="White"
+                        FlowDirection="RightToLeft" />
+                    <Label
+                        x:Name="LetterNameLabel"
+                        FontSize="16"
+                        TextColor="#CCE3F9"
+                        HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <!-- Names Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Letter Names" Style="{StaticResource SectionHeader}" Margin="0" FontSize="16" />
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Arabic Name" Style="{StaticResource EnglishLabelSecondary}" HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Transliteration" Style="{StaticResource EnglishLabelSecondary}" HorizontalTextAlignment="Start" />
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="ArabicNameLabel" FontSize="22" TextColor="{StaticResource PrimaryBlue}" FlowDirection="RightToLeft" HorizontalTextAlignment="Center" />
+                            <Label Grid.Row="1" Grid.Column="1" x:Name="TransliterationLabel" FontSize="18" Style="{StaticResource TransliterationLabel}" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Letter Forms Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Letter Forms" Style="{StaticResource SectionHeader}" Margin="0" FontSize="16" />
+                        <Grid ColumnDefinitions="*,*,*,*" RowDefinitions="Auto,Auto" ColumnSpacing="8" RowSpacing="6">
+                            <Label Grid.Row="0" Grid.Column="0" Text="Isolated" Style="{StaticResource EnglishLabelSecondary}" FontSize="11" />
+                            <Label Grid.Row="0" Grid.Column="1" Text="Initial" Style="{StaticResource EnglishLabelSecondary}" FontSize="11" />
+                            <Label Grid.Row="0" Grid.Column="2" Text="Medial" Style="{StaticResource EnglishLabelSecondary}" FontSize="11" />
+                            <Label Grid.Row="0" Grid.Column="3" Text="Final" Style="{StaticResource EnglishLabelSecondary}" FontSize="11" />
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="IsolatedLabel" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource PrimaryBlue}" HorizontalTextAlignment="Center" FlowDirection="RightToLeft" />
+                            <Label Grid.Row="1" Grid.Column="1" x:Name="InitialLabel" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource PrimaryTeal}" HorizontalTextAlignment="Center" FlowDirection="RightToLeft" />
+                            <Label Grid.Row="1" Grid.Column="2" x:Name="MedialLabel" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource AccentGold}" HorizontalTextAlignment="Center" FlowDirection="RightToLeft" />
+                            <Label Grid.Row="1" Grid.Column="3" x:Name="FinalLabel" FontSize="28" FontAttributes="Bold" TextColor="{StaticResource IncorrectRed}" HorizontalTextAlignment="Center" FlowDirection="RightToLeft" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Pronunciation Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="🔊 Pronunciation" Style="{StaticResource SectionHeader}" Margin="0" FontSize="16" />
+                        <Label x:Name="PronunciationLabel" FontSize="15" TextColor="{StaticResource TextPrimary}" />
+                    </VerticalStackLayout>
+                </Frame>
+
+                <!-- Example Word Card -->
+                <Frame Style="{StaticResource CardFrame}">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="📝 Example Word" Style="{StaticResource SectionHeader}" Margin="0" FontSize="16" />
+                        <Label x:Name="ExampleWordLabel" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource PrimaryBlue}" HorizontalTextAlignment="Center" FlowDirection="RightToLeft" />
+                        <Label x:Name="ExampleTranslationLabel" FontSize="16" TextColor="{StaticResource TextSecondary}" HorizontalTextAlignment="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

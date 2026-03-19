@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ArabicLearningApp.Views.QuizPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:ArabicLearningApp.ViewModels"
+    xmlns:models="clr-namespace:ArabicLearningApp.Models"
+    Title="Quiz"
+    BackgroundColor="{StaticResource BackgroundLight}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <Grid Grid.Row="0" HeightRequest="90">
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource GradientStart}" Offset="0.0" />
+                        <GradientStop Color="{StaticResource GradientEnd}" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <VerticalStackLayout VerticalOptions="Center" Padding="16,0">
+                <Label Text="الاختِبَار" Style="{StaticResource ArabicTextSmall}" TextColor="White" FontSize="22" />
+                <Label x:Name="QuizHeaderLabel" Text="Test your Arabic knowledge" TextColor="#CCE3F9" FontSize="13" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Padding="16" Spacing="12">
+
+                <!-- ===== CATEGORY SELECTION STATE ===== -->
+                <VerticalStackLayout x:Name="CategorySelectionView" IsVisible="True" Spacing="12">
+                    <Label Text="Select Quiz Category" Style="{StaticResource SectionHeader}" />
+                    <Picker x:Name="QuizCategoryPicker" Title="Choose category..." FontSize="15" />
+                    <Button
+                        Text="🚀 Start Quiz (10 Questions)"
+                        Style="{StaticResource PrimaryButton}"
+                        Clicked="OnStartQuizClicked"
+                        HorizontalOptions="Fill" />
+
+                    <!-- Quiz History -->
+                    <Label Text="Recent Quizzes" Style="{StaticResource SectionHeader}" />
+                    <CollectionView x:Name="QuizHistoryView" HeightRequest="200" SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:QuizResult">
+                                <Frame Style="{StaticResource CardFrame}" Margin="0,2" Padding="12">
+                                    <Grid ColumnDefinitions="*,Auto,Auto">
+                                        <VerticalStackLayout Grid.Column="0">
+                                            <Label Text="{Binding Category}" FontSize="14" FontAttributes="Bold" TextColor="{StaticResource TextPrimary}" />
+                                            <Label Text="{Binding Date, StringFormat='{0:MMM dd, yyyy}'}" FontSize="12" TextColor="{StaticResource TextSecondary}" />
+                                        </VerticalStackLayout>
+                                        <Label Grid.Column="1" Text="{Binding DisplayScore}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryBlue}" VerticalOptions="Center" Margin="0,0,12,0" />
+                                        <Label Grid.Column="2" Text="{Binding DisplayPercentage}" FontSize="16" FontAttributes="Bold" TextColor="{StaticResource PrimaryTeal}" VerticalOptions="Center" />
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <!-- ===== IN-PROGRESS STATE ===== -->
+                <VerticalStackLayout x:Name="InProgressView" IsVisible="False" Spacing="12">
+
+                    <!-- Progress Bar -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <ProgressBar x:Name="QuizProgressBar" Grid.Column="0" Progress="0" ProgressColor="{StaticResource PrimaryBlue}" VerticalOptions="Center" />
+                        <Label x:Name="QuestionProgressLabel" Grid.Column="1" Text="1/10" FontSize="13" TextColor="{StaticResource TextSecondary}" VerticalOptions="Center" Margin="8,0,0,0" />
+                    </Grid>
+
+                    <!-- Score display -->
+                    <Label x:Name="ScoreLabel" Text="Score: 0" FontSize="15" FontAttributes="Bold" TextColor="{StaticResource PrimaryTeal}" HorizontalTextAlignment="End" />
+
+                    <!-- Question Card -->
+                    <Frame Style="{StaticResource CardFrame}" Padding="20">
+                        <VerticalStackLayout Spacing="8">
+                            <Label x:Name="QuestionTypeLabel" Text="What does this mean?" FontSize="13" TextColor="{StaticResource TextSecondary}" HorizontalTextAlignment="Center" />
+                            <Label
+                                x:Name="QuestionTextLabel"
+                                FontSize="44"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{StaticResource PrimaryBlue}"
+                                FlowDirection="RightToLeft" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Answer Options -->
+                    <VerticalStackLayout x:Name="AnswerOptionsLayout" Spacing="8" />
+
+                    <!-- Feedback -->
+                    <Frame x:Name="FeedbackFrame" IsVisible="False" CornerRadius="12" Padding="16">
+                        <VerticalStackLayout Spacing="6">
+                            <Label x:Name="FeedbackIcon" FontSize="30" HorizontalTextAlignment="Center" />
+                            <Label x:Name="FeedbackLabel" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                            <Label x:Name="CorrectAnswerLabel" FontSize="14" TextColor="{StaticResource TextSecondary}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Next Button -->
+                    <Button
+                        x:Name="NextButton"
+                        Text="Next Question →"
+                        Style="{StaticResource PrimaryButton}"
+                        IsVisible="False"
+                        Clicked="OnNextQuestionClicked"
+                        HorizontalOptions="Fill" />
+
+                </VerticalStackLayout>
+
+                <!-- ===== COMPLETED STATE ===== -->
+                <VerticalStackLayout x:Name="CompletedView" IsVisible="False" Spacing="16">
+                    <Frame Style="{StaticResource CardFrame}" Padding="24">
+                        <VerticalStackLayout Spacing="12" HorizontalOptions="Center">
+                            <Label x:Name="ResultIconLabel" Text="🎉" FontSize="60" HorizontalTextAlignment="Center" />
+                            <Label Text="Quiz Complete!" FontSize="24" FontAttributes="Bold" TextColor="{StaticResource PrimaryBlue}" HorizontalTextAlignment="Center" />
+                            <Label x:Name="ResultMessageLabel" FontSize="18" TextColor="{StaticResource PrimaryTeal}" HorizontalTextAlignment="Center" />
+                            <Label x:Name="FinalScoreLabel" FontSize="42" FontAttributes="Bold" TextColor="{StaticResource AccentGold}" HorizontalTextAlignment="Center" />
+                            <Label x:Name="FinalPercentageLabel" FontSize="18" TextColor="{StaticResource TextSecondary}" HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Frame>
+                    <Button Text="🔄 Try Again" Style="{StaticResource PrimaryButton}" Clicked="OnRestartClicked" HorizontalOptions="Fill" />
+                    <Button Text="← Back to Categories" Style="{StaticResource OutlineButton}" Clicked="OnBackToCategoriesClicked" HorizontalOptions="Fill" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>
