@@ -1,0 +1,132 @@
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.catBtn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 20px;
+  border: 2px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.catBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.catBtnActive {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+  color: var(--secondary) !important;
+  font-weight: 700;
+}
+
+.counter {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.flashcardArea {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.arrowBtn {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 2rem;
+  color: var(--secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.arrowBtn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.dotNav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  transition: var(--transition);
+  padding: 0;
+}
+
+.dotActive {
+  background: var(--primary) !important;
+  transform: scale(1.4);
+}
+
+@media (max-width: 640px) {
+  .arrowBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .flashcardArea {
+    gap: 0.5rem;
+  }
+}
