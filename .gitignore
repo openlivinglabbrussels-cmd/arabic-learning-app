@@ -1,0 +1,46 @@
+## .NET MAUI / .NET build artifacts
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.sln.docstates
+.DS_Store
+Thumbs.db
+
+## NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
+## Generated files
+*.g.cs
+*.g.i.cs
+
+## Android
+*.apk
+*.aab
+*.keystore
+local.properties
+
+## iOS
+*.ipa
+*.dSYM.zip
+*.dSYM
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+## Log files
+*.log
+crash-*.json

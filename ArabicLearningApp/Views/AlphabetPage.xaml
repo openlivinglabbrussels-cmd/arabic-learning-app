@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ArabicLearningApp.Views.AlphabetPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:ArabicLearningApp.Models"
+    Title="Arabic Alphabet"
+    BackgroundColor="{StaticResource BackgroundLight}">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <Grid Grid.Row="0" HeightRequest="90">
+            <BoxView>
+                <BoxView.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{StaticResource GradientStart}" Offset="0.0" />
+                        <GradientStop Color="{StaticResource GradientEnd}" Offset="1.0" />
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <VerticalStackLayout VerticalOptions="Center" Padding="16,0">
+                <Label Text="الحُرُوف العَرَبِيَّة" Style="{StaticResource ArabicTextSmall}" TextColor="White" FontSize="22" />
+                <Label Text="Arabic Alphabet — 28 Letters" TextColor="#CCE3F9" FontSize="13" HorizontalTextAlignment="Center" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <!-- Letters Grid -->
+        <CollectionView
+            Grid.Row="1"
+            x:Name="LettersCollection"
+            Margin="8"
+            SelectionMode="None">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="6" VerticalItemSpacing="6" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:ArabicLetter">
+                    <Frame Style="{StaticResource CardFrame}" Padding="8">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLetterTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                            <Label
+                                Text="{Binding Letter}"
+                                FontSize="40"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{StaticResource PrimaryBlue}"
+                                FlowDirection="RightToLeft" />
+                            <Label
+                                Text="{Binding Name}"
+                                FontSize="12"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                TextColor="{StaticResource TextPrimary}" />
+                            <Label
+                                Text="{Binding Transliteration}"
+                                Style="{StaticResource TransliterationLabel}"
+                                FontSize="11" />
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</ContentPage>

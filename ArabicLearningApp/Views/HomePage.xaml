@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ArabicLearningApp.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{StaticResource BackgroundLight}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+
+            <!-- Hero Header -->
+            <Grid HeightRequest="260">
+                <BoxView>
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="{StaticResource GradientStart}" Offset="0.0" />
+                            <GradientStop Color="{StaticResource GradientEnd}" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+                <VerticalStackLayout
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Spacing="8"
+                    Padding="24">
+                    <Label
+                        Text="تَعَلَّم العَرَبِيَّة"
+                        Style="{StaticResource ArabicTextLarge}"
+                        TextColor="White"
+                        FontSize="38" />
+                    <Label
+                        Text="Learn Arabic"
+                        Style="{StaticResource PageTitle}"
+                        FontSize="20" />
+                    <Label
+                        Text="Your journey to Arabic fluency starts here"
+                        TextColor="#CCE3F9"
+                        FontSize="13"
+                        HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- Navigation Cards -->
+            <VerticalStackLayout Padding="16" Spacing="4">
+
+                <Label Text="Choose a Section" Style="{StaticResource SectionHeader}" />
+
+                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="8" RowSpacing="8">
+
+                    <!-- Alphabet -->
+                    <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource NavCard}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnAlphabetTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="🔤" FontSize="36" HorizontalTextAlignment="Center" />
+                            <Label Text="Alphabet" Style="{StaticResource EnglishLabelPrimary}" />
+                            <Label Text="28 Letters" Style="{StaticResource EnglishLabelSecondary}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Vocabulary -->
+                    <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource NavCard}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnVocabularyTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="📖" FontSize="36" HorizontalTextAlignment="Center" />
+                            <Label Text="Vocabulary" Style="{StaticResource EnglishLabelPrimary}" />
+                            <Label Text="7 Categories" Style="{StaticResource EnglishLabelSecondary}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Flashcards -->
+                    <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource NavCard}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnFlashcardsTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="🃏" FontSize="36" HorizontalTextAlignment="Center" />
+                            <Label Text="Flashcards" Style="{StaticResource EnglishLabelPrimary}" />
+                            <Label Text="Flip &amp; Learn" Style="{StaticResource EnglishLabelSecondary}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Quiz -->
+                    <Frame Grid.Row="1" Grid.Column="1" Style="{StaticResource NavCard}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnQuizTapped" />
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                            <Label Text="📝" FontSize="36" HorizontalTextAlignment="Center" />
+                            <Label Text="Quiz" Style="{StaticResource EnglishLabelPrimary}" />
+                            <Label Text="Test yourself" Style="{StaticResource EnglishLabelSecondary}" FontSize="12" />
+                        </VerticalStackLayout>
+                    </Frame>
+
+                    <!-- Progress -->
+                    <Frame Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource NavCard}">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnProgressTapped" />
+                        </Frame.GestureRecognizers>
+                        <HorizontalStackLayout Spacing="16" HorizontalOptions="Center">
+                            <Label Text="📈" FontSize="36" VerticalOptions="Center" />
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="My Progress" Style="{StaticResource EnglishLabelPrimary}" HorizontalTextAlignment="Start" />
+                                <Label Text="Track your learning journey" Style="{StaticResource EnglishLabelSecondary}" HorizontalTextAlignment="Start" FontSize="12" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+
+                </Grid>
+
+                <!-- Tip -->
+                <Frame Margin="0,8,0,8"
+                       BackgroundColor="#E8F4FD"
+                       BorderColor="#90CAF9"
+                       CornerRadius="12"
+                       Padding="16">
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="💡" FontSize="20" VerticalOptions="Center" />
+                        <Label
+                            Text="Tip: Start with the Alphabet, then explore Vocabulary and practice with Flashcards!"
+                            FontSize="13"
+                            TextColor="{StaticResource PrimaryBlue}"
+                            VerticalOptions="Center" />
+                    </HorizontalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
