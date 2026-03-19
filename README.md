@@ -1,16 +1,25 @@
-# React + Vite
+# Arabic Learning App 🌙
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive web application for learning Arabic — covering the alphabet, vocabulary, and quizzes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Alphabet** — Browse all 28 Arabic letters with their name, transliteration, pronunciation guide, and an example word. Click any letter for a detailed view.
+- **Vocabulary Flashcards** — 54 words across 6 categories (greetings, numbers, colors, body parts, animals, common words). Cards flip to reveal the English translation and transliteration. Filter by category or navigate freely.
+- **Quiz** — 10 random multiple-choice questions testing Arabic → English translation, with a live progress bar, score tracking, and a results screen.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React 19](https://react.dev/) + [Vite 8](https://vite.dev/)
+- CSS Modules — no external CSS frameworks
+- [Amiri](https://fonts.google.com/specimen/Amiri) Google Font for Arabic calligraphy
+- RTL (`dir="rtl"`) support throughout
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev       # development server
+npm run build     # production build
+npm test          # run tests
+```
