@@ -3,7 +3,12 @@ import { vocabulary } from '../data/vocabulary';
 import styles from './QuizSection.module.css';
 
 function shuffle(arr) {
-  return [...arr].sort(() => Math.random() - 0.5);
+  const result = [...arr];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
 }
 
 function generateQuestions(words, count = 10) {

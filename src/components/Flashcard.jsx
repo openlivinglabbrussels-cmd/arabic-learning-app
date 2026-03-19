@@ -15,7 +15,12 @@ export default function Flashcard({ word }) {
       role="button"
       tabIndex={0}
       aria-label={flipped ? 'Flashcard showing English translation, click to flip' : 'Flashcard showing Arabic word, click to flip'}
-      onKeyDown={(e) => e.key === 'Enter' || e.key === ' ' ? setFlipped(!flipped) : null}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setFlipped(!flipped);
+        }
+      }}
     >
       <div className={`${styles.card} ${flipped ? styles.cardFlipped : ''}`}>
         <div className={styles.cardFront}>
